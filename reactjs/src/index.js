@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -10,17 +11,25 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import AdminLayout from './layouts/AdminLayout';
 import AuthLayout from './layouts/AuthLayout';
 import StoreLayout from './layouts/StoreLayout';
+import Notification from './components/Utils/Notification';
+
+import store from './redux/store';
 
 ReactDOM.render(
-	<BrowserRouter >
-		<Switch >
-			<Route path="/store" render={props => < StoreLayout {...props} />} />
-			<Route path="/auth" render={props => < AuthLayout {...props} />} />
-			<Route path="/admin" render={props => < AdminLayout {...props} />} />
-			
-			<Redirect from="/" to="/store" />
-		</Switch>
-	</BrowserRouter>,
+	<>
+		<Provider store={store}>
+			<BrowserRouter >
+				<Switch >
+					<Route path="/store" render={props => < StoreLayout {...props} />} />
+					<Route path="/auth" render={props => < AuthLayout {...props} />} />
+					<Route path="/admin" render={props => < AdminLayout {...props} />} />
+
+					<Redirect from="/" to="/store" />
+				</Switch>
+			</BrowserRouter>
+			<Notification />
+		</Provider>
+	</>,
 	document.getElementById("root")
 );
 

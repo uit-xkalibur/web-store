@@ -20,6 +20,9 @@ namespace aspnetcore.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(UserModel), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(typeof(GeneralResponse), 401)]
+        [ProducesResponseType(typeof(GeneralResponse), 404)]
         [ProducesResponseType(typeof(GeneralResponse), 500)]
         public IActionResult Login(
             [FromBody] UserLoginRequestResource userAccount)

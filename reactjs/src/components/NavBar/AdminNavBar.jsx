@@ -20,6 +20,8 @@ import {
   Media
 } from "reactstrap";
 
+import * as helper from '../../utils/helper';
+
 class AdminNavBar extends Component {
   render() {
     return (
@@ -90,12 +92,15 @@ function UserDropdownMenu(props) {
           <span>Support</span>
         </DropdownItem>
         <DropdownItem divider />
-        <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+        <DropdownItem href="#pablo" onClick={() => {
+          helper.setCookiesValue("userToken");
+          window.location.replace("/auth/login");
+        }}>
           <i className="ni ni-user-run" />
           <span>Logout</span>
         </DropdownItem>
       </DropdownMenu>
-    </UncontrolledDropdown>
+    </UncontrolledDropdown >
   );
 }
 

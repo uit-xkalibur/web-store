@@ -19,6 +19,10 @@ import {
 
 // Own componets
 import CheckBox from '../../components/Utils/CheckBox';
+import Notification from '../../components/Utils/Notification';
+
+// Service APIs
+import { UsersServiceApis, setCookiesValue } from '../../utils/helper';
 
 // assets/img/icons/common
 const FacebookSVG = require("../../assets/img/icons/common/facebook.svg")
@@ -26,6 +30,45 @@ const GoogleSVG = require("../../assets/img/icons/common/google.svg")
 
 
 class LoginView extends Component {
+  state = { username: "", password: "" }
+
+  onSignInClick = async () => {
+    const username = document.getElementById("login-username-input").value;
+    const password = document.getElementById("login-password-input").value;
+    if (!username) {
+      Notification.alert(
+        "Information",
+        "Username is required, please try with a valid value !",
+        "danger");
+      return;
+    }
+    if (!password) {
+      Notification.alert(
+        "Information",
+        "Password is required, please try with a valid value !",
+        "danger");
+      return;
+    }
+    try {
+      const response = await UsersServiceApis.login(username, password);
+      const json = await response.json();
+      switch (response.status) {
+        case 200:
+          Notification.alert("Success! ", "Login successful", "success");
+          setCookiesValue("userToken", json.result.token);
+          window.location.replace("/admin/user-profile");
+          break;
+
+        default:
+          Notification.alert(`Error ${response.status}`, json.error.detail, "danger")
+          break;
+      }
+
+    } catch (error) {
+      Notification.alert(`Error ${error.status}`, error.title, "danger");
+    }
+  }
+
   render() {
     return (
       <Col lg="5" md="7">
@@ -51,10 +94,7 @@ class LoginView extends Component {
                       <i className="ni ni-circle-08" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input
-                    placeholder="Username"
-                    onChange={e => console.log(e.target.value)}
-                  />
+                  <Input id="login-username-input" placeholder="Username" />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
@@ -64,11 +104,10 @@ class LoginView extends Component {
                       <i className="ni ni-lock-circle-open" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input
+                  <Input id="login-password-input"
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
-                    onChange={e => console.log(e.target.value)}
                   />
                 </InputGroup>
               </FormGroup>
@@ -77,7 +116,9 @@ class LoginView extends Component {
                 onChange={e => console.log(e.target.checked)}
               />
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
+                <Button className="my-4" color="primary" type="button"
+                  onClick={this.onSignInClick}
+                >
                   Sign in
                 </Button>
               </div>

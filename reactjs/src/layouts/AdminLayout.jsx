@@ -9,9 +9,18 @@ import WebStoreFooter from '../components/Footer/WebStoreFooter';
 import AdminSlidebar from '../components/NavBar/AdminSlidebar';
 import { AdminNavBar } from '../components/NavBar/AdminNavBar';
 
+// utils codes
 import routes from '../utils/routes';
+import * as helper from '../utils/helper';
 
 class AdminLayout extends Component {
+	componentDidMount = () => {
+		const userToken = helper.getCookiesValue("userToken");
+		console.log(userToken);
+		if (null === userToken)
+			window.location.replace("/auth/login");
+	}
+
 	render() {
 		return (
 			<>
