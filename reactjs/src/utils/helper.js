@@ -27,6 +27,8 @@ export function setCookiesValue(key, value) {
   document.cookie = cookieValue + "; path=/";
 }
 
+const domain = "http://localhost:5000"
+
 export class UsersServiceApis {
   static async login(username, password) {
     const crypto = require('crypto');
@@ -44,7 +46,7 @@ export class UsersServiceApis {
       redirect: 'follow'
     };
 
-    const apiEndpoint = "http://localhost:5000/Users/Login";
+    const apiEndpoint = `${domain}/Users/Login`;
 
     try {
       const response = await fetch(apiEndpoint, requestOptions);

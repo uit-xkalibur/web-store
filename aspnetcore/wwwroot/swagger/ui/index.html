@@ -82,7 +82,7 @@
 
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
-        url: "http://localhost:5000/swagger/v1/swagger.json",
+        url: `${aspnetcore.domain}/swagger/v1/swagger.json`,
         dom_id: '#swagger-ui',
         presets: [
           SwaggerUIBundle.presets.apis,

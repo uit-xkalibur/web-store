@@ -1,6 +1,7 @@
 ﻿var aspnetcore = aspnetcore || {};
 (function () {
-
+    //Change this when deploy on server
+    aspnetcore.domain = "http://localhost:5000"
     aspnetcore.loginUserAccount = function (username, sha1Pass, closeCallback) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -13,8 +14,7 @@
             body: raw,
             redirect: 'follow'
         };
-
-        fetch("http://localhost:5000/Users/Login", requestOptions)
+        fetch(`${aspnetcore.domain}/Users/Login`, requestOptions)
             .then(response => response.json())
             .then(JSON => {
                 if (null !== JSON.result) {
