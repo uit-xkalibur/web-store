@@ -15,6 +15,7 @@ const routes = [
     component: UserProfileView,
     layout: "/admin",
   },
+
 ]
 
 export default routes;
