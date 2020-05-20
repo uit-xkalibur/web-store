@@ -118,6 +118,7 @@ namespace aspnetcore
             });
             // Dependency Injection
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<ISanPhamService, SanPhamService>();
 
         }
 
