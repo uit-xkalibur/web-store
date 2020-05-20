@@ -12,10 +12,16 @@ import {
   Nav,
   Container,
   Row,
-  Col
+  Col,
+  Form,
+  FormGroup,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Input
 } from "reactstrap";
 
-class AuthNavBar extends Component {
+class StoreNavBar extends Component {
   componentDidMount() {
     if (this.props.scrollHeight)
       window.addEventListener("scroll", this.handleScrollHeight);
@@ -67,17 +73,45 @@ class AuthNavBar extends Component {
                   </Col>
                 </Row>
               </div>
+              <Form className="navbar-search navbar-search-dark ml-lg-auto d-none d-md-inline">
+                <FormGroup className="mb-0">
+                  <InputGroup className="input-group-alternative">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="fas fa-search" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input placeholder="Search" type="text" />
+                  </InputGroup>
+                </FormGroup>
+              </Form>
+              <Form className="mt-4 mb-3 d-md-none">
+                <InputGroup className="input-group-rounded input-group-merge">
+                  <Input
+                    aria-label="Search"
+                    className="form-control-rounded form-control-prepended"
+                    placeholder="Search"
+                    type="search"
+                  />
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="fas fa-search" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                </InputGroup>
+              </Form>
               {/* Navigate bar items */}
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <NavLink
                     className="nav-link-icon"
-                    to="#"
-                    onClick={e => e.preventDefault()}
+                    to="/store/products"
                     tag={Link}
                   >
-                    <i className="ni ni-key-25" />
-                    <span className="nav-link-inner--text">Register</span>
+                    <i className="ni ni-collection" />
+                    <span className="nav-link-inner--text d-none d-lg-inline d-max-md-inline">
+                      Sản phẩm
+                    </span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -87,8 +121,18 @@ class AuthNavBar extends Component {
                     onClick={e => e.preventDefault()}
                     tag={Link}
                   >
+                    <i className="ni ni-cart" />
+                    <span className="nav-link-inner--text d-none d-lg-inline d-max-md-inline">
+                      Giỏ hàng
+                    </span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
                     <i className="ni ni-lock-circle-open" />
-                    <span className="nav-link-inner--text">Login</span>
+                    <span className="nav-link-inner--text d-none d-lg-inline d-max-md-inline">
+                      Đăng nhập
+                    </span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -98,8 +142,10 @@ class AuthNavBar extends Component {
                     onClick={e => e.preventDefault()}
                     tag={Link}
                   >
-                    <i className="ni ni-single-02" />
-                    <span className="nav-link-inner--text">Profile</span>
+                    <i className="ni ni-square-pin" />
+                    <span className="nav-link-inner--text d-none d-lg-inline d-max-md-inline">
+                      Cửa hàng
+                    </span>
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -111,8 +157,8 @@ class AuthNavBar extends Component {
   }
 }
 
-AuthNavBar.propTypes = {
+StoreNavBar.propTypes = {
   scrollHeight: PropTypes.number.isRequired,
 };
 
-export default AuthNavBar;
+export default StoreNavBar;

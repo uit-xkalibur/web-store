@@ -63,9 +63,10 @@ yarn start
 # Quy trình làm việc với source code
 
 1. Sau khi nhận được requirement đã đặc tả, tiến hành thiết kế nhằm giải quyết requirement được giao.
-2. Sau khi hoàn chỉnh và chốt bản thiết kế: Developer thực hiện develop theo công việc được phân công trên branch `dev`; Tester thực hiện tài liệu liên quan đến testing.
-3. Sau khi developer thực hiện xong công việc thì chuyển giao sang cho tester bên branch `test`. Tester tiến hành kiểm thử và phản hồi cho developer.
-4. Một requirement hoàn chỉnh sẽ được mang sang branch `deploy` để public trên server.
+2. Sau khi hoàn chỉnh và chốt bản thiết kế: Developer thực hiện develop theo công việc được phân công trên branch `dev`;
+3. Các Developer phải tạo 1 nhánh mới ở local từ nhành `dev`, và thực hiện code trên đó. Sau khi hoàn thành thì push cả nhánh lên Github
+4. Tạo một pull request trên Github để xin merge vào nhánh `dev` chính
+5. Một requirement hoàn chỉnh sẽ được mang sang branch `deploy` để public trên server.
 
 ***Một số lưu ý:***
 * Mỗi một commit phải là commit có khả năng build và run được (không được phép commit lỗi khiến cho cả project không thể build/run)
