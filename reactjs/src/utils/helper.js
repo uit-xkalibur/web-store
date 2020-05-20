@@ -27,7 +27,7 @@ export function setCookiesValue(key, value) {
   document.cookie = cookieValue + "; path=/";
 }
 
-const domain = "http://localhost:5000"
+const domain = "http://datnt908.ddns.net:5000"
 
 export class UsersServiceApis {
   static async login(username, password) {
