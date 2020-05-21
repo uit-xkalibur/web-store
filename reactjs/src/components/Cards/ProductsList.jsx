@@ -4,50 +4,64 @@ import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 
 
-export class ProductList extends Component{
-  constructor(props){
-      super(props);
-  }
-
+export class ProductsList extends Component{
+ 
 
   render(){
  
   return (
     <> 
-    <div className="header bg-gradient-info pb-8 pt-5 pt-md-8"> 
-      <Container fluid>
-        <div className="header-body">
-          {/* Card stats */}
+    <div className="d-flex p-2"> 
+           {/* Card stats */}
           <Row>
-            <Col lg="6" xl="3" style={{margin: '25px'}}>
+            <Col lg="6" xl="3" className="d-flex p-2">
             <Cards/> 
             </Col>
-            <Col lg="6" xl="3" style={{margin: '25px'}}>
+            <Col lg="6" xl="3" className="d-flex p-2">
             <Cards/> 
             </Col>
-            <Col lg="6" xl="3" style={{margin: '25px'}}>
+            <Col lg="6" xl="3" className="d-flex p-2">
             <Cards/> 
             </Col>
-            <Col lg="6" xl="3" style={{margin: '25px'}}>             
+            <Col lg="6" xl="3" className="d-flex p-2">             
             <Cards/> 
             </Col>  
-            <Col lg="6" xl="3" style={{margin: '25px'}}>
+            <Col lg="6" xl="3" className="d-flex p-2">
             <Cards/> 
             </Col>
-            <Col lg="6" xl="3" style={{margin: '25px'}}>
+            <Col lg="6" xl="3" className="d-flex p-2">
             <Cards/> 
             </Col>
-            <Col lg="6" xl="3" style={{margin: '25px'}}>             
+            <Col lg="6" xl="3" className="d-flex p-2">             
             <Cards/> 
             </Col>      
-    
+
+            <Col lg="6" xl="3"  className="d-flex p-2">
+            <Cards/> 
+            </Col>
+            <Col lg="6" xl="3"  className="d-flex p-2">
+            <Cards/> 
+            </Col>
+            <Col lg="6" xl="3"  className="d-flex p-2">
+            <Cards/> 
+            </Col>
+            <Col lg="6" xl="3"  className="d-flex p-2">             
+            <Cards/> 
+            </Col>  
+            <Col lg="6" xl="3"  className="d-flex p-2">
+            <Cards/> 
+            </Col>
+            <Col lg="6" xl="3"  className="d-flex p-2">
+            <Cards/> 
+            </Col>
+            <Col lg="6" xl="3"  className="d-flex p-2">             
+            <Cards/> 
+            </Col>
           </Row>
-        </div>
-      </Container>
     </div>
   </>
   );
   }
 }
 
-export default ProductList;
+export default ProductsList;
