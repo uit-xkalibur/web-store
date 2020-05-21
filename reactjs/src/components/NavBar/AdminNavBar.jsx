@@ -20,7 +20,7 @@ import {
   Media
 } from "reactstrap";
 
-import * as helper from '../../utils/helper';
+import { setCookiesValue } from '../../utils/helper';
 
 class AdminNavBar extends Component {
   render() {
@@ -93,7 +93,7 @@ function UserDropdownMenu(props) {
         </DropdownItem>
         <DropdownItem divider />
         <DropdownItem href="#pablo" onClick={() => {
-          helper.setCookiesValue("userToken");
+          setCookiesValue("userToken");
           window.location.replace("/auth/login");
         }}>
           <i className="ni ni-user-run" />

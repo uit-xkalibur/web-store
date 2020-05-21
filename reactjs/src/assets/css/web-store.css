@@ -8,3 +8,7 @@
     height: 640px !important;
     background-size: cover !important;
 }
+
+b, strong {
+    font-weight: bold !important;
+}

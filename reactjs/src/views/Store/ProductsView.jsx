@@ -1,58 +1,32 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, Row, Col } from "reactstrap";
 
+// core components
+import CategoriesBar from '../../components/Products/CategoriesBar';
+import ProductsList from '../../components/Products/ProductsList';
 
 class ProductsView extends Component {
   render() {
     return (
-      <div className="mt--7 mx-4 position-relative" style={{ zIndex: 1 }}>
-        <Col>
-          <Card className="bg-white shadow">
-            <div className="container pt-5">
-              <CardHeader className="bg-white border-0">
-                <Row className="align-items-center">
-                  <Col xs="8">
-                    <h2 className="mb-0">{this.props.title}</h2>
-                  </Col>
-                  <Col className="text-right" xs="4">
-                    {
-                      this.props.isViewMore &&
-                      <Button color="primary" href="/store/products">
-                        Xem toàn bộ sản phẩm
-                      </Button>
-                    }
-                  </Col>
-                </Row>
-              </CardHeader>
-              <CardBody style={{ height: 500 }}>
-
-              </CardBody>
-            </div>
-          </Card>
-        </Col>
-      </div>
+      <Card className="bg-white shadow mt--7 mx-4 position-relative" style={{ zIndex: 1 }}>
+        <Row className="pt-0 pt-md-7 mx-3 mx-md-7">
+          <Col xl="3" lg="4" md="5" sm="12">
+            <CategoriesBar />
+          </Col>
+          <Col xl="9" lg="8" md="7" sm="12" >
+            <ProductsList extended={true} products={this.props.products.products} />
+          </Col>
+        </Row>
+      </Card>
     );
   }
 }
 
-ProductsView.propTypes = {
-  title: PropTypes.string.isRequired,
-  isViewMore: PropTypes.bool,
-};
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
 
-ProductsView.defaultProps = {
-  isViewMore: false,
-  title: "SẢN PHẨM",
-};
-
-export default ProductsView;
+export default connect(mapStateToProps, null)(ProductsView);

@@ -11,11 +11,11 @@ import { AdminNavBar } from '../components/NavBar/AdminNavBar';
 
 // utils codes
 import routes from '../utils/routes';
-import * as helper from '../utils/helper';
+import { getCookiesValue } from '../utils/helper';
 
 class AdminLayout extends Component {
 	componentDidMount = () => {
-		const userToken = helper.getCookiesValue("userToken");
+		const userToken = getCookiesValue("userToken");
 		console.log(userToken);
 		if (null === userToken)
 			window.location.replace("/auth/login");
