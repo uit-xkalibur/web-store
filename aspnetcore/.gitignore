@@ -3,6 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+## PROJECT IGNORE
+# appdata
+/wwwroot/app-data/products/*
+!/wwwroot/app-data/products/_default-img.jpg
+
 # User-specific files
 *.rsuser
 *.suo
