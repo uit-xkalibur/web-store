@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// reactstrap components
+import { Alert } from 'reactstrap';
+
 import store from '../../redux/store';
 import { pushNotification, hideNotification } from '../../redux/actions/notifyActions';
 
-import { Alert } from 'reactstrap';
 
 class Notification extends Component {
   state = { isOpen: false }

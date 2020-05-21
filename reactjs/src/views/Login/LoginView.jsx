@@ -22,7 +22,8 @@ import CheckBox from '../../components/Utils/CheckBox';
 import Notification from '../../components/Utils/Notification';
 
 // Service APIs
-import { UsersServiceApis, setCookiesValue } from '../../utils/helper';
+import { UsersServiceApis } from '../../utils/apisCalling';
+import { setCookiesValue } from '../../utils/helper';
 
 // assets/img/icons/common
 const FacebookSVG = require("../../assets/img/icons/common/facebook.svg")

@@ -21,8 +21,10 @@ import {
   Input
 } from "reactstrap";
 
+
+
 class StoreNavBar extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     if (this.props.scrollHeight)
       window.addEventListener("scroll", this.handleScrollHeight);
   }
@@ -37,6 +39,11 @@ class StoreNavBar extends Component {
       document.getElementById("auth-nav").classList.add("bg-dark");
     else
       document.getElementById("auth-nav").classList.remove("bg-dark");
+  }
+
+  handleSearchKeyPress = async (event) => {
+    if (13 === event.charCode)
+      window.location.replace(`/store/search?Search=${event.target.value}`);
   }
 
   render() {
@@ -73,25 +80,29 @@ class StoreNavBar extends Component {
                   </Col>
                 </Row>
               </div>
-              <Form className="navbar-search navbar-search-dark ml-lg-auto d-none d-md-inline">
-                <FormGroup className="mb-0">
+              <div className="navbar-search navbar-search-dark ml-lg-auto d-none d-md-inline">
+                <div className="mb-0">
                   <InputGroup className="input-group-alternative">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
                         <i className="fas fa-search" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Search" type="text" />
+                    <Input
+                      placeholder="Search" type="text"
+                      onKeyPress={e => this.handleSearchKeyPress(e)}
+                    />
                   </InputGroup>
-                </FormGroup>
-              </Form>
-              <Form className="mt-4 mb-3 d-md-none">
+                </div>
+              </div>
+              <div className="mt-4 mb-3 d-md-none">
                 <InputGroup className="input-group-rounded input-group-merge">
                   <Input
                     aria-label="Search"
                     className="form-control-rounded form-control-prepended"
                     placeholder="Search"
                     type="search"
+                    onKeyPress={this.handleSearchKeyPress}
                   />
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
@@ -99,7 +110,7 @@ class StoreNavBar extends Component {
                     </InputGroupText>
                   </InputGroupAddon>
                 </InputGroup>
-              </Form>
+              </div>
               {/* Navigate bar items */}
               <Nav className="ml-auto" navbar>
                 <NavItem>

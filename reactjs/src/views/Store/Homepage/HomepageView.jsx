@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ProductsView from './ProductsView';
+
+// core components
+import ProductsSection from './ProductsSection';
+
 
 class HomepageView extends Component {
   render() {
     return (
-      <div>
-        <ProductsView title="SẢN PHẨM NỔI BẬT" isViewMore={true} />
-      </div>
+      <ProductsSection />
     );
   }
 }

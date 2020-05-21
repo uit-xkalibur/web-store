@@ -11,7 +11,7 @@ import {
   CardText
 } from "reactstrap";
 
-import { DOMAIN } from '../../utils/helper';
+import { DOMAIN } from '../../utils/apisCalling';
 
 class ProductCard extends Component {
   render() {

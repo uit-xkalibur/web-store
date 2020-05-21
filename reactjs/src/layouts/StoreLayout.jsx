@@ -5,12 +5,25 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import StoreNavBar from '../components/NavBar/StoreNavBar';
 import SlideShow from '../components/Utils/SlideShow';
 import WebStoreFooter from '../components/Footer/WebStoreFooter';
+import Notification from '../components/Utils/Notification';
 
 import routes from '../utils/routes';
 
+// redux
+import store from '../redux/store';
+import { categoriesProduct, searchProduct } from '../redux/actions/productActions';
+
+// helper
+import { getCategories, getProducts } from '../utils/helper';
+
 class StoreLayout extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     document.body.classList.add("bg-darker");
+    const categories = ["Tất cả"].concat(await getCategories());
+    const products = await getProducts("", "");
+    store.dispatch(categoriesProduct(categories));
+    const productSearch = { search: "", category: "Tất cả", products: products }
+    store.dispatch(searchProduct(productSearch));
   }
   componentWillUnmount() {
     document.body.classList.remove("bg-darker");
