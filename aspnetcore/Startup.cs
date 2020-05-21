@@ -2,21 +2,14 @@ using System;
 using System.Text;
 using aspnetcore.Helper;
 using aspnetcore.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Repositories;
-using Microsoft.AspNetCore.StaticFiles;
-using System.Reflection;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace aspnetcore
 {
@@ -29,6 +22,8 @@ namespace aspnetcore
             ResultHandler.Initialize();
             // Setup database connection string
             ProcedureHelper.ConnectionString = Configuration["ConnectionStrings:Default"];
+            // Setup file handler
+            FileHandler.Initialize();
             // Get secret key for user service
             UsersService.Secret = Configuration["AuthSetting:Secret"];
         }
@@ -147,10 +142,15 @@ namespace aspnetcore
                 endpoints.MapControllers();
             });
 
-            app.Run(context =>
+            app.Use(async (context, next) =>
             {
-                context.Response.Redirect("swagger/ui/index.html");
-                return Task.CompletedTask;
+                // Redirect to an external URL
+                if (context.Request.Path.Value.Contains("/"))
+                {
+                    context.Response.Redirect("swagger/ui/index.html");
+                    return;   // short circuit
+                }
+                await next();
             });
         }
     }

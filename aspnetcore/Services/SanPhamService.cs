@@ -1,34 +1,34 @@
 ﻿using aspnetcore.Helper;
 using aspnetcore.Repositories.DTOs;
 using aspnetcore.Services.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace aspnetcore.Services
 {
     public interface ISanPhamService
     {
-        (ResultCodes,List<SanPhamModel>) ShowProducts(string code,string name,string category,bool recordStatus);
+        (ResultCodes, List<SanPhamModel>) Search(string search, string category);
+        (ResultCodes, List<string>) Categories();
     }
-    public class SanPhamService:BaseService, ISanPhamService
+    public class SanPhamService : BaseService, ISanPhamService
     {
-        public (ResultCodes,List<SanPhamModel>) ShowProducts(string code, 
-                                                        string name, 
-                                                        string category, 
-                                                        bool recordStatus)
+        public (ResultCodes, List<string>) Categories()
+        {
+            List<string> categories = procedureHelper.GetData<string>(
+                "get_categories", new {});
+            return (ResultCodes.SUCCESS, categories);
+        }
+
+        public (ResultCodes, List<SanPhamModel>) Search(string search, string category)
         {
             List<SanPhamModel> list_sanpham = new List<SanPhamModel>();
             List<SanPhamDTO> list_sanphamDTO = procedureHelper.GetData<SanPhamDTO>(
                 "get_sanpham", new
                 {
-                    Code = code,
-                    Name = name,
+                    Search = search,
                     Category = category,
-                    RecordStatus = Convert.ToInt32(recordStatus)
                 });
-            foreach(SanPhamDTO item in list_sanphamDTO)
+            foreach (SanPhamDTO item in list_sanphamDTO)
             {
                 SanPhamModel sanpham = new SanPhamModel();
                 if (!sanpham.ConvertFromDTO(item))

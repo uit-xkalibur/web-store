@@ -1,8 +1,5 @@
-﻿using aspnetcore.Repositories.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using aspnetcore.Helper;
+using aspnetcore.Repositories.DTOs;
 
 namespace aspnetcore.Services.Models
 {
@@ -22,7 +19,7 @@ namespace aspnetcore.Services.Models
             Code = sanphamDTO.Code;
             Name = sanphamDTO.Name;
             Category = sanphamDTO.Category;
-            Image = sanphamDTO.Image;
+            Image = FileHandler.GetFileUrl(PrefixPaths.PRODUCTS, sanphamDTO.Image);
             Price = sanphamDTO.Price;
             return true;
         }
