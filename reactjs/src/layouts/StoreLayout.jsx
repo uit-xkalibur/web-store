@@ -19,7 +19,7 @@ class StoreLayout extends Component {
   render() {
     return (
       <>
-        <StoreNavBar scrollHeight={520} />
+        <StoreNavBar scrollHeight={480} />
         <div className="main-content">
           <SlideShow />
           <div>

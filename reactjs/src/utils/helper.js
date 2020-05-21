@@ -27,7 +27,56 @@ export function setCookiesValue(key, value) {
   document.cookie = cookieValue + "; path=/";
 }
 
-const domain = "http://datnt908.ddns.net:5000"
+export const DOMAIN = "http://datnt908.ddns.net:5000"
+
+export class SanPhamServiceApis {
+  static async categories() {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+
+    const apiEndpoint = `${DOMAIN}/SanPham/Categories`;
+
+    try {
+      const response = await fetch(apiEndpoint, requestOptions);
+      switch (response.status) {
+        case 200:
+        case 500:
+          return response;
+
+        default:
+          throw response;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async search(search, category) {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+
+    const apiEndpoint = `${DOMAIN}/SanPham/Search`;
+    const queryString = `?Search=${search}&Category=${category}`;
+
+    try {
+      const response = await fetch(`${apiEndpoint}${queryString}`, requestOptions)
+      switch (response.status) {
+        case 200:
+        case 500:
+          return response;
+
+        default:
+          throw response;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+}
 
 export class UsersServiceApis {
   static async login(username, password) {
@@ -46,7 +95,7 @@ export class UsersServiceApis {
       redirect: 'follow'
     };
 
-    const apiEndpoint = `${domain}/Users/Login`;
+    const apiEndpoint = `${DOMAIN}/Users/Login`;
 
     try {
       const response = await fetch(apiEndpoint, requestOptions);
@@ -65,3 +114,5 @@ export class UsersServiceApis {
     }
   }
 }
+
+
