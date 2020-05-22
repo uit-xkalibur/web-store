@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { func } from 'prop-types';
 
 // reactstrap components
 import {
@@ -12,6 +12,9 @@ import {
 } from "reactstrap";
 
 import { DOMAIN } from '../../utils/apisCalling';
+import { connect } from 'react-redux';
+import { addBasket } from '../../redux/actions/addAction';
+import store from '../../redux/store';
 
 class ProductCard extends Component {
   render() {
@@ -21,7 +24,7 @@ class ProductCard extends Component {
         <CardBody>
           <CardTitle style={{ height: 48 }}><b>{this.props.product.name}</b></CardTitle>
           <CardText>{this.props.product.price} Đ</CardText>
-          <Button color="danger" onClick={e => e.preventDefault()}>
+          <Button color="danger" onClick={()=>this.props.addBasket(this.props.product.name)}>
             Buy now
           </Button>
         </CardBody>
@@ -38,7 +41,9 @@ ProductCard.propTypes = {
     category: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
-  }),
+    }),
+  addBasket: PropTypes.func,
 };
 
-export default ProductCard;
+
+export default connect(null, { addBasket }) (ProductCard);

@@ -18,7 +18,7 @@ function SlideShow(props) {
     autoplay: true
   };
   return (
-    <Carousel {...settings}>
+     <Carousel {...settings}>
       {images.map((image, key) => {
         return (
           <div key={key}>

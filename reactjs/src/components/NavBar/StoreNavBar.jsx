@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -20,6 +20,9 @@ import {
   InputGroupText,
   Input
 } from "reactstrap";
+
+import { connect } from 'react-redux';
+import { getNumbers } from '../../redux/actions/getAction';
 
 
 
@@ -44,6 +47,10 @@ class StoreNavBar extends Component {
   handleSearchKeyPress = async (event) => {
     if (13 === event.charCode)
       window.location.replace(`/store/search?Search=${event.target.value}`);
+  }
+
+  componentDidUpdate() {
+    getNumbers();
   }
 
   render() {
@@ -128,14 +135,15 @@ class StoreNavBar extends Component {
                 <NavItem>
                   <NavLink
                     className="nav-link-icon"
-                    to="#"
-                    onClick={e => e.preventDefault()}
+                    to="/store/cart"
                     tag={Link}
                   >
                     <i className="ni ni-cart" />
                     <span className="nav-link-inner--text d-none d-lg-inline d-max-md-inline">
                       Giỏ hàng
                     </span>
+                    {this.props.basketProps.basketNumbers!=0 &&
+                    (<span> {this.props.basketProps.basketNumbers}</span>)}
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -172,4 +180,8 @@ StoreNavBar.propTypes = {
   scrollHeight: PropTypes.number.isRequired,
 };
 
-export default StoreNavBar;
+const mapStatetoProps = state => ({
+  basketProps: state.basketState  
+})
+
+export default connect(mapStatetoProps, { getNumbers }) (StoreNavBar);

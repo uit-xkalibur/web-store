@@ -3,6 +3,7 @@ import UserProfileView from '../views/UserProfile/UserProfileView';
 import ProductsView from '../views/Store/ProductsView';
 import HomepageView from '../views/Store/Homepage/HomepageView';
 import SearchView from '../views/Store/SearchView';
+import CartView from '../views/Store/CartView';
 
 const routes = [
   {
@@ -34,6 +35,12 @@ const routes = [
     path: "/search",
     name: "Search Products View",
     component: SearchView,
+    layout: "/store",
+  },
+  {
+    path: "/cart",
+    name: "Cart View",
+    component: CartView,
     layout: "/store",
   },
 ]
