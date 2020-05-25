@@ -7,7 +7,7 @@ async function RetriveAllProducts() {
     };
     let data = [];
     try {
-        const response = await fetch("http://datnt908.ddns.net:5000/SanPham/Search", requestOptions);
+        const response = await fetch("http://web-store.ddns.net:5000/SanPham/Search", requestOptions);
         if (!response.ok)
             throw Error(response.statusText);
         data = response.json();

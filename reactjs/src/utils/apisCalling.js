@@ -1,6 +1,6 @@
 
 
-export const DOMAIN = "http://datnt908.ddns.net:5000"
+export const DOMAIN = "http://web-store.ddns.net:5000"
 
 export class SanPhamServiceApis {
     static async categories() {

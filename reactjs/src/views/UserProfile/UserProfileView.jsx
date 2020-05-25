@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
+import { Container} from 'reactstrap';
 
 // core components
 import UserHeader from "../../components/Header/UserHeader";
@@ -14,7 +14,6 @@ class UserProfileView extends Component {
         />
         {/* Page content */}
         <Container fluid>
-
         </Container>
       </>
     );

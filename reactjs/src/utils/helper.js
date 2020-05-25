@@ -47,7 +47,8 @@ export async function getCategories() {
         }
 
     } catch (error) {
-        Notification.alert(`Error ${error.status}`, error.title, "danger");
+       // Notification.alert(`Error ${error.status}`, error.title, "danger");
+       console.log(error);
     }
 }
 
