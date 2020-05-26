@@ -12,13 +12,24 @@ import { AdminNavBar } from '../components/NavBar/AdminNavBar';
 // utils codes
 import routes from '../utils/routes';
 import { getCookiesValue } from '../utils/helper';
+import store from '../redux/store';
+import { categoriesProduct, searchProduct } from '../redux/actions/productActions';
+
+// helper
+import { getCategories, getProducts } from '../utils/helper';
 
 class AdminLayout extends Component {
-	componentDidMount = () => {
+	async componentDidMount () {
 		const userToken = getCookiesValue("userToken");
 		console.log(userToken);
 		if (null === userToken)
 			window.location.replace("/auth/login");
+
+	const categories = ["Tất cả"].concat(await getCategories());
+    const products = await getProducts("", "");
+    store.dispatch(categoriesProduct(categories));
+    const productSearch = { search: "", category: "Tất cả", products: products }
+    store.dispatch(searchProduct(productSearch));
 	}
 
 	render() {

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Container} from 'reactstrap';
+import { connect } from 'react-redux';
+
 
 // core components
 import UserHeader from "../../components/Header/UserHeader";
+import Tables from "../../components/Management/Tables"
 
 class UserProfileView extends Component {
-  render() {
+   render() {
     return (
       <>
         <UserHeader
@@ -14,10 +17,15 @@ class UserProfileView extends Component {
         />
         {/* Page content */}
         <Container fluid>
+        <Tables products={this.props.products.products}/>
         </Container>
       </>
     );
   }
 }
 
-export default UserProfileView;
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
+
+export default connect(mapStateToProps, null)(UserProfileView);
